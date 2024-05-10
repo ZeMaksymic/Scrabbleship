@@ -75,6 +75,8 @@ public class GameManager : MonoBehaviour
         selectedTile = button;
 
         Debug.Log("LetterTileSelected: " + selectedTile.letter);
+
+        AudioManager.Instance.PlayClick();
     }
 
     public void LetterGuessed(bool isCorrect)
@@ -85,6 +87,8 @@ public class GameManager : MonoBehaviour
         UpdateGuessCount();
         
         if (isCorrect) letterBank.DestroyTile(selectedTile);  // Remove successful tile from letter bank
+
+        AudioManager.Instance.PlayClick();
     }
 
     public void WordCorrect(string word)
@@ -93,6 +97,8 @@ public class GameManager : MonoBehaviour
         UpdateWordCount();
 
         if (wordCount <= 0) youWinPanel.SetActive(true);
+
+        AudioManager.Instance.PlayBoom();
     }
 
     private void UpdateWordCount()
