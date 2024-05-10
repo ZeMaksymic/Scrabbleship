@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text guessCountText;
     [SerializeField] GameBoard gameBoard;
     [SerializeField] GameObject instructionsPanel;
+    [SerializeField] GameObject youWinPanel;
 
     // MASTER LIST OF WORD PAIRS
     private List<List<string>> WORDS_LIST = new List<List<string>> {
@@ -40,6 +41,8 @@ public class GameManager : MonoBehaviour
     // Called when "PLAY" button is clicked
     public void NewGame()
     {
+        youWinPanel.SetActive(false);
+
         selectedTile = null;
 
         gameIndex += 1;
@@ -89,7 +92,7 @@ public class GameManager : MonoBehaviour
         wordCount -= 1;
         UpdateWordCount();
 
-        // TODO: If wordCount == 0, you win!!!
+        if (wordCount <= 0) youWinPanel.SetActive(true);
     }
 
     private void UpdateWordCount()

@@ -632,6 +632,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5740705329444288121}
+    - target: {fileID: 6867852175023938135, guid: a76c7f99fea4c41a8a4467e4d37605f3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MakeGuess
+      objectReference: {fileID: 0}
     - target: {fileID: 8785425583494580484, guid: a76c7f99fea4c41a8a4467e4d37605f3, type: 3}
       propertyPath: m_Name
       value: GridButton (0,0)
@@ -742,6 +746,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5740705329444288121}
+    - target: {fileID: 6867852175023938135, guid: a76c7f99fea4c41a8a4467e4d37605f3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MakeGuess
+      objectReference: {fileID: 0}
     - target: {fileID: 8785425583494580484, guid: a76c7f99fea4c41a8a4467e4d37605f3, type: 3}
       propertyPath: m_Name
       value: GridButton (0,1)
