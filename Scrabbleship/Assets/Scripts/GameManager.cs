@@ -7,7 +7,8 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     public static GameManager Instance { get { return _instance; } }
     
-    [SerializeField] public GameObject instructionsPanel;
+    [SerializeField] GameBoard gameBoard;
+    [SerializeField] GameObject instructionsPanel;
 
     public char selectedLetter = '-';
 
