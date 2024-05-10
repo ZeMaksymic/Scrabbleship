@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
 
     int gameIndex = -1;  // Incremented with each new game
 
+    List<char> letters = new List<char>();
+
     public char selectedLetter = '-';  // Letter that has been selected from letter bank
 
     private void Awake()
@@ -29,6 +31,7 @@ public class GameManager : MonoBehaviour
             _instance = this;
     }
 
+    // Called when "PLAY" button is clicked
     public void NewGame()
     {
         gameIndex += 1;
@@ -39,7 +42,16 @@ public class GameManager : MonoBehaviour
 
         gameBoard.SetupBoard(words);  // Assign words locations on the grid
 
-        // TODO: Extract letters from words and add to letter bank
+        // Extract letters from words
+        foreach (string word in words)
+            foreach (char letter in word)
+                letters.Add(letter);
+        
+        letters.Sort();  // Sort list alphabetically
+
+        Debug.Log($"NewGame: letters = " + String.Join(", ", letters.ToArray()));
+
+        // TODO: Populate letter bank with letters
     }
 
     public void ShowInstructions(bool show)
