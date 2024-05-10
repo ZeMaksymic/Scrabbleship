@@ -35,7 +35,9 @@ public class GameManager : MonoBehaviour
 
         List<string> words = WORDS_LIST[gameIndex];
 
-        Debug.Log($"RYAN: words: {words[0]}, {words[1]}");
+        Debug.Log($"NewGame: words = {words[0]}, {words[1]}");
+
+        gameBoard.SetupBoard(words);  // Assign words locations on the grid
 
         // TODO: Extract letters from words and add to letter bank
     }
