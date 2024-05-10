@@ -10,7 +10,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameBoard gameBoard;
     [SerializeField] GameObject instructionsPanel;
 
-    public char selectedLetter = '-';
+    // MASTER LIST OF WORD PAIRS
+    private List<List<string>> WORDS_LIST = new List<List<string>> {
+        new List<string> {"DOG", "BARK"},
+        new List<string> {"CAT", "MEOW"},
+        new List<string> {"BIRD", "PEEP"}
+    };
+
+    int gameIndex = -1;  // Incremented with each new game
+
+    public char selectedLetter = '-';  // Letter that has been selected from letter bank
 
     private void Awake()
     {
@@ -18,6 +27,17 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         else
             _instance = this;
+    }
+
+    public void NewGame()
+    {
+        gameIndex += 1;
+
+        List<string> words = WORDS_LIST[gameIndex];
+
+        Debug.Log($"RYAN: words: {words[0]}, {words[1]}");
+
+        // TODO: Extract letters from words and add to letter bank
     }
 
     public void ShowInstructions(bool show)

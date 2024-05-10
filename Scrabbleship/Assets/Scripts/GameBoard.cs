@@ -31,7 +31,7 @@ public class GameBoard : MonoBehaviour
         // If the letter didn't hit anything - GREY
 
         // If a letter is guessed correctly, let GameManager know so it's removed from the letter bank
-        // GameManager.Instance.LetterCorrect(letter);
+        // GameManager.Instance.LetterCorrect(selectedLetter);
 
         // If an entire word has been found, let GameManage rknow so it can decrement Words Left
         // GameManager.Instance.WordCorrect("word");
