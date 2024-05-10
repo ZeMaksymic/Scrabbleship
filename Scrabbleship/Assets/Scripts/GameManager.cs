@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     public static GameManager Instance { get { return _instance; } }
     
+    [SerializeField] LetterBank letterBank;
     [SerializeField] GameBoard gameBoard;
     [SerializeField] GameObject instructionsPanel;
 
@@ -18,8 +19,6 @@ public class GameManager : MonoBehaviour
     };
 
     int gameIndex = -1;  // Incremented with each new game
-
-    List<char> letters = new List<char>();
 
     public char selectedLetter = '-';  // Letter that has been selected from letter bank
 
@@ -43,15 +42,16 @@ public class GameManager : MonoBehaviour
         gameBoard.SetupBoard(words);  // Assign words locations on the grid
 
         // Extract letters from words
+        List<char> letters = new List<char>();
         foreach (string word in words)
             foreach (char letter in word)
                 letters.Add(letter);
         
         letters.Sort();  // Sort list alphabetically
 
-        Debug.Log($"NewGame: letters = " + String.Join(", ", letters.ToArray()));
+        Debug.Log("NewGame: letters = " + String.Join(", ", letters.ToArray()));
 
-        // TODO: Populate letter bank with letters
+        letterBank.SetLetters(letters);
     }
 
     public void ShowInstructions(bool show)
