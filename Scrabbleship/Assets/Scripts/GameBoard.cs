@@ -18,11 +18,12 @@ public class GameBoard : MonoBehaviour
     public void MakeGuess(GridButton button)
     {
         // The letter that the user has clicked on in the letter bank
-        char letter = GameManager.Instance.selectedLetter;
+        char selectedLetter = GameManager.Instance.selectedLetter;
 
-        // Grab row/column from the GridButton that was tapped
+        // Grab row/column/letter from the GridButton that was tapped
         int row = button.row;
         int column = button.column;
+        char buttonLetter = button.letter;
 
         // TODO: Logic check
         // If the letter is in the correct location – GREEN
