@@ -53,7 +53,7 @@ public class GameBoard : MonoBehaviour
         Tuple<int,int> coordinate = new Tuple<int,int>(row, column);
         if (letter == button.letter) {
             // change tile to green
-            GameManager.Instance.LetterCorrect(letter);
+            GameManager.Instance.LetterGuessed(true);
 
             // string word = getWordAtCoordinate(coordinate);
             // int index = words.IndexOf(word);

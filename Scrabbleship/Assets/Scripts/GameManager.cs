@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,6 +10,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get { return _instance; } }
     
     [SerializeField] LetterBank letterBank;
+    [SerializeField] TMP_Text wordCountText;
+    [SerializeField] TMP_Text guessCountText;
     [SerializeField] GameBoard gameBoard;
     [SerializeField] GameObject instructionsPanel;
 
@@ -18,10 +22,12 @@ public class GameManager : MonoBehaviour
         new List<string> {"BIRD", "PEEP"}
     };
 
-    int gameIndex = -1;  // Incremented with each new game
+    private int gameIndex = -1;  // Incremented with each new game
+    private int wordCount = 0;
+    private int guessCount = 0;
 
     private TileButton selectedTile;  // Tile that has been selected from letter bank
-    public char selectedLetter { get { return selectedTile.letter; }}
+    public char selectedLetter { get { return selectedTile?.letter ?? '-'; }}
 
     private void Awake()
     {
@@ -34,11 +40,15 @@ public class GameManager : MonoBehaviour
     // Called when "PLAY" button is clicked
     public void NewGame()
     {
+        selectedTile = null;
+
         gameIndex += 1;
 
         List<string> words = WORDS_LIST[gameIndex];
-
         Debug.Log($"NewGame: words = {words[0]}, {words[1]}");
+
+        wordCount = words.Count;
+        UpdateWordCount();
 
         gameBoard.SetupBoard(words);  // Assign words locations on the grid
 
@@ -53,6 +63,8 @@ public class GameManager : MonoBehaviour
         Debug.Log("NewGame: letters = " + String.Join(", ", letters.ToArray()));
 
         letterBank.SetLetters(letters);
+
+        UpdateGuessCount();
     }
 
     public void LetterTileSelected(TileButton button)
@@ -62,14 +74,32 @@ public class GameManager : MonoBehaviour
         Debug.Log("LetterTileSelected: " + selectedTile.letter);
     }
 
-    public void LetterCorrect(char letter)
+    public void LetterGuessed(bool isCorrect)
     {
+        EventSystem.current.SetSelectedGameObject(null);  // Deselect tile
 
+        guessCount += 1;
+        UpdateGuessCount();
+        
+        if (isCorrect) letterBank.DestroyTile(selectedTile);  // Remove successful tile from letter bank
     }
 
     public void WordCorrect(string word)
     {
+        wordCount -= 1;
+        UpdateWordCount();
 
+        // TODO: If wordCount == 0, you win!!!
+    }
+
+    private void UpdateWordCount()
+    {
+        wordCountText.text = wordCount.ToString();
+    }
+
+    private void UpdateGuessCount()
+    {
+        guessCountText.text = guessCount.ToString();
     }
 
     public void ShowInstructions(bool show)
