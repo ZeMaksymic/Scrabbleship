@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     // Called when "PLAY" button is clicked
     public void NewGame()
     {
-        youWinPanel.SetActive(false);
+        //youWinPanel.SetActive(false);
 
         selectedTile = null;
 
@@ -96,7 +96,12 @@ public class GameManager : MonoBehaviour
         wordCount -= 1;
         UpdateWordCount();
 
-        if (wordCount <= 0) youWinPanel.SetActive(true);
+        if (wordCount == 0)
+        {
+            Debug.Log("YOU WIN!!!");
+            
+            //youWinPanel.SetActive(true);  // youWinPanel is being destroyed for some reason???
+        }
 
         AudioManager.Instance.PlayBoom();
     }
