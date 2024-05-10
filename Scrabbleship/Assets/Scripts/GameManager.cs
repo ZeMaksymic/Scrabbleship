@@ -20,7 +20,8 @@ public class GameManager : MonoBehaviour
 
     int gameIndex = -1;  // Incremented with each new game
 
-    public char selectedLetter = '-';  // Letter that has been selected from letter bank
+    private TileButton selectedTile;  // Tile that has been selected from letter bank
+    public char selectedLetter { get { return selectedTile.letter; }}
 
     private void Awake()
     {
@@ -54,9 +55,11 @@ public class GameManager : MonoBehaviour
         letterBank.SetLetters(letters);
     }
 
-    public void ShowInstructions(bool show)
+    public void LetterTileSelected(TileButton button)
     {
-        instructionsPanel.SetActive(show);
+        selectedTile = button;
+
+        Debug.Log("LetterTileSelected: " + selectedTile.letter);
     }
 
     public void LetterCorrect(char letter)
@@ -67,5 +70,10 @@ public class GameManager : MonoBehaviour
     public void WordCorrect(string word)
     {
 
+    }
+
+    public void ShowInstructions(bool show)
+    {
+        instructionsPanel.SetActive(show);
     }
 }
