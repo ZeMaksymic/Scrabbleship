@@ -5,6 +5,8 @@ public class LetterBank : MonoBehaviour
 {
     [SerializeField] TileButton tileButtonPrefab;
 
+    List<TileButton> tileButtons = new List<TileButton>();
+
     public void SetLetters(List<char> letters)
     {
         // Remove any existing tiles
@@ -28,6 +30,22 @@ public class LetterBank : MonoBehaviour
                 float xPos = 10f + ((i - 4) * 100f) + ((i - 4) * 10f);
                 float yPos = -120f;
                 tileButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(xPos, yPos);
+            }
+
+            tileButtons.Add(tileButton);
+        }
+    }
+
+    // Remove given tile from letter bank
+    public void DestroyTile(TileButton tileButton)
+    {
+        foreach (TileButton tButt in tileButtons)
+        {
+            if (tButt == tileButton)
+            {
+                tileButtons.Remove(tileButton);
+                Destroy(tileButton.gameObject);
+                return;
             }
         }
     }
