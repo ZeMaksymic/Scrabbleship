@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     
     [SerializeField] public GameObject instructionsPanel;
 
+    public char selectedLetter = '-';
+
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -20,5 +22,15 @@ public class GameManager : MonoBehaviour
     public void ShowInstructions(bool show)
     {
         instructionsPanel.SetActive(show);
+    }
+
+    public void LetterCorrect(char letter)
+    {
+
+    }
+
+    public void WordCorrect(string word)
+    {
+
     }
 }
