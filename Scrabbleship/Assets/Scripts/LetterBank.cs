@@ -21,14 +21,14 @@ public class LetterBank : MonoBehaviour
 
             if (i < 4)
             {
-                float xPos = 10f + (i * 100f) + (i * 10f);
+                float xPos = 10f + (i * 90) + (i * 10f);
                 float yPos = -10f;
                 tileButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(xPos, yPos);
             }
             else
             {
-                float xPos = 10f + ((i - 4) * 100f) + ((i - 4) * 10f);
-                float yPos = -120f;
+                float xPos = 10f + ((i - 4) * 90) + ((i - 4) * 10f);
+                float yPos = -110f;
                 tileButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(xPos, yPos);
             }
 
