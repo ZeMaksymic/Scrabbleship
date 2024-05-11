@@ -18,12 +18,20 @@ public class GameManager : MonoBehaviour
 
     // MASTER LIST OF WORD PAIRS
     private List<List<string>> WORDS_LIST = new List<List<string>> {
-        new List<string> {"DOG", "BARK"},
-        new List<string> {"CAT", "MEOW"},
-        new List<string> {"BIRD", "PEEP"}
+        new List<string> {"HOP", "BASK"},
+        new List<string> {"LID", "VEIL"},
+        new List<string> {"JUG", "FERN"},
+        new List<string> {"SAND", "LIPS"},
+        new List<string> {"DART", "PELT"},
+        new List<string> {"BALE", "WISP"},
+        new List<string> {"COD", "VENT"},
+        new List<string> {"BOLT", "GERM"},
+        new List<string> {"RINK", "VIAL"},
+        new List<string> {"YARN", "RUNG"}
     };
+    private List<int> wordsListIndices = new List<int>();
+    System.Random rando = new System.Random();
 
-    private int gameIndex = -1;  // Incremented with each new game
     private int wordCount = 0;
     private int guessCount = 0;
 
@@ -38,6 +46,12 @@ public class GameManager : MonoBehaviour
             _instance = this;
     }
 
+    private void Start()
+    {
+        // Generate list of indices associated with WORDS_LIST
+        for (int i = 0; i < WORDS_LIST.Count; i++) wordsListIndices.Add(i);
+    }
+
     // Called when "PLAY" button is clicked
     public void NewGame()
     {
@@ -45,7 +59,9 @@ public class GameManager : MonoBehaviour
 
         selectedTile = null;
 
-        gameIndex += 1;
+        // Randomly pick a WORDS_LIST index, then remove it from play
+        int gameIndex = wordsListIndices[rando.Next(wordsListIndices.Count)];
+        wordsListIndices.Remove(gameIndex);
 
         List<string> words = WORDS_LIST[gameIndex];
         Debug.Log($"NewGame: words = {words[0]}, {words[1]}");
