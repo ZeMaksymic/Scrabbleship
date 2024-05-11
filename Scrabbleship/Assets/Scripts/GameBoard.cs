@@ -82,6 +82,8 @@ public class GameBoard : MonoBehaviour
     // Called when the user clicks on a grid button
     public void MakeGuess(GridButton button)
     {
+        if (button.isCorrectlyGuessed) return;
+        
         // The letter that the user has clicked on in the letter bank
         char letter = GameManager.Instance.selectedLetter;
 
