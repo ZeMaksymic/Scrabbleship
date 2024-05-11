@@ -457,9 +457,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 279084461963829660, guid: b43ad459cdd7c4687b22da0f278a9548, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 180.78137
+      objectReference: {fileID: 0}
     - target: {fileID: 1330090373110087644, guid: b43ad459cdd7c4687b22da0f278a9548, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1894597021107587976, guid: b43ad459cdd7c4687b22da0f278a9548, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -90.26001
       objectReference: {fileID: 0}
     - target: {fileID: 2034310625806815695, guid: b43ad459cdd7c4687b22da0f278a9548, type: 3}
       propertyPath: m_SizeDelta.x
@@ -581,6 +589,10 @@ PrefabInstance:
       propertyPath: guessCountText
       value: 
       objectReference: {fileID: 2044323133}
+    - target: {fileID: 8707730830430443033, guid: b43ad459cdd7c4687b22da0f278a9548, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
