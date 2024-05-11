@@ -72,7 +72,7 @@ public class GameBoard : MonoBehaviour
                 if (j < GRID_SIZE)
                 {
                     float xPos = (j * 100f);
-                    float yPos = -10f - (i * 100f);
+                    float yPos = -(i * 100f);
                     gridButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(xPos, yPos);
                 }
             }
