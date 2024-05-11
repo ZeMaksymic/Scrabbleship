@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     private int guessCount = 0;
 
     private TileButton selectedTile;  // Tile that has been selected from letter bank
-    public char selectedLetter { get { return selectedTile?.letter ?? '-'; }}
+    public char selectedLetter { get { return selectedTile?.letter ?? ' '; }}
 
     private void Awake()
     {
@@ -87,6 +87,8 @@ public class GameManager : MonoBehaviour
         UpdateGuessCount();
         
         if (isCorrect) letterBank.DestroyTile(selectedTile);  // Remove successful tile from letter bank
+
+        selectedTile = null;
 
         AudioManager.Instance.PlayClick();
     }

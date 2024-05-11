@@ -85,12 +85,14 @@ public class GameBoard : MonoBehaviour
         // The letter that the user has clicked on in the letter bank
         char letter = GameManager.Instance.selectedLetter;
 
+        if (letter == ' ') return;
+
         // Grab row/column from the GridButton that was tapped
         int row = button.row;
         int column = button.column;
 
         Tuple<int,int> coordinate = new Tuple<int,int>(row, column);
-        if (button.letter == ' ' || button.letter == '-')
+        if (button.letter == ' ' || button.letter == ' ')
         {
             button.SetGrey();
             GameManager.Instance.LetterGuessed(false);
