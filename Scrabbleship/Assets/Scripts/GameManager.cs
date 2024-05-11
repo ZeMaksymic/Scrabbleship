@@ -14,7 +14,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text guessCountText;
     [SerializeField] GameBoard gameBoard;
     [SerializeField] GameObject instructionsPanel;
-    [SerializeField] GameObject youWinPanel;
+    [SerializeField] GameObject playPanel;
+    [SerializeField] TMP_Text victoryText;
 
     // MASTER LIST OF WORD PAIRS
     private List<List<string>> WORDS_LIST = new List<List<string>> {
@@ -55,7 +56,7 @@ public class GameManager : MonoBehaviour
     // Called when "PLAY" button is clicked
     public void NewGame()
     {
-        //youWinPanel.SetActive(false);
+        playPanel.SetActive(false);
 
         selectedTile = null;
 
@@ -83,6 +84,7 @@ public class GameManager : MonoBehaviour
 
         letterBank.SetLetters(letters);
 
+        guessCount = 0;
         UpdateGuessCount();
     }
 
@@ -118,7 +120,10 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("YOU WIN!!!");
             
-            //youWinPanel.SetActive(true);  // youWinPanel is being destroyed for some reason???
+            playPanel.SetActive(true);
+
+            victoryText.text = $"You won in {guessCount} guesses!\nPlay again?";
+            victoryText.gameObject.SetActive(true);
         }
 
         AudioManager.Instance.PlayBoom();

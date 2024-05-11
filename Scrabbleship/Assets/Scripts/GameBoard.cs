@@ -5,9 +5,9 @@ using UnityEngine;
 public class GameBoard : MonoBehaviour
 {
     private List<string> words;
-	private List<Tuple<int,int>> wordStartCoordinates = new List<Tuple<int,int>>();
+	private List<Tuple<int,int>> wordStartCoordinates;
 
-    private List<List<GridButton>> wordButtons =new List<List<GridButton>>();
+    private List<List<GridButton>> wordButtons;
 
     [SerializeField] GridButton gridButtonPrefab;
 
@@ -16,8 +16,11 @@ public class GameBoard : MonoBehaviour
     // Called by GameManager when the "PLAY" button is clicked
     public void SetupBoard(List<string> _words)
     {
-        Debug.Log("IN SETUP BOARD");
         words = _words;
+        
+        wordStartCoordinates = new List<Tuple<int,int>>();
+        wordButtons = new List<List<GridButton>>();
+        
         foreach(string word in words) {
             wordButtons.Add(new List<GridButton>());
         }
@@ -83,7 +86,7 @@ public class GameBoard : MonoBehaviour
     public void MakeGuess(GridButton button)
     {
         if (button.isCorrectlyGuessed) return;
-        
+
         // The letter that the user has clicked on in the letter bank
         char letter = GameManager.Instance.selectedLetter;
 
